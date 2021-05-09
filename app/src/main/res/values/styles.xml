@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomAppTheme" parent="Theme.AppCompat">
+        <item name="android:textColorPrimaryDisableOnly">#00838f</item>
+        <item name="colorAccent">#714213</item>
+    </style>
+    <style name="CustomAppThemeField" parent="Theme.AppCompat">
+        <item name="android:textColorPrimaryDisableOnly">#00838f</item>
+        <item name="colorOnSurface">#714213</item>
+
+        <item name="colorPrimary">#714213</item>
+    </style>
+
+</resources>

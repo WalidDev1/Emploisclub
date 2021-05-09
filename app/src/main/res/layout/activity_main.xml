@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbarLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/MyCustomToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="0.2in"
+                    android:layout_height="0.2in"
+                    app:srcCompat="@drawable/logocnx" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delta équitation"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="119dp"
+                    tools:layout_editor_absoluteY="28dp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0.7in"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:padding="7dp"
+                    android:layout_marginLeft="0.4in"
+                    android:text="Abonnement"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_abonnement"
+                    android:textColor="@color/white"
+                    tools:layout_editor_absoluteY="11dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0.2in"
+                    android:background="@null"
+                    app:srcCompat="@drawable/ic_note" />
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="482dp"
+        android:layout_above="@+id/imageView2"
+        android:layout_below="@+id/toolbarLayout1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="0dp">
+
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:paddingBottom="0dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/activity_main_bottom_navigation"
+        android:layout_marginBottom="0dp"
+        app:srcCompat="@drawable/herb" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/activity_main_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:itemIconTint="@drawable/button_nav_click"
+        app:itemTextColor="@drawable/button_nav_click"
+        app:menu="@menu/button_nav_menu"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
