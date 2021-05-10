@@ -10,5 +10,5 @@
 
         <item name="colorPrimary">#714213</item>
     </style>
-
+    <string name="GetAllTache">GetTache.php</string>
 </resources>

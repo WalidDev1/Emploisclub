@@ -50,6 +50,7 @@ import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.Customdialog;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.RecyclerViewAdapterListeSeance;
 import ma.uit.emploisclub.Model.Seance;
 import ma.uit.emploisclub.R;
+import ma.uit.emploisclub.api.EmploisClubCalls;
 
 import static ma.uit.emploisclub.Controllers.MainActivity.getScreenWidth;
 
@@ -58,7 +59,7 @@ import static ma.uit.emploisclub.Controllers.MainActivity.getScreenWidth;
  * Use the {@link three#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class three extends Fragment implements Customdialog.CustomdialogListener {
+public class three extends Fragment implements Customdialog.CustomdialogListener ,  EmploisClubCalls.Callbacks{
     private int first_position = -1;
     private View first_view;
     private static RecyclerViewAdapterListeSeance adapter;
@@ -205,6 +206,7 @@ public class three extends Fragment implements Customdialog.CustomdialogListener
                             getTacheAt(date);
                         }
                     });
+                    EmploisClubCalls.fetchUserFollowing(three.this);
                 }
 
 
@@ -315,4 +317,15 @@ public class three extends Fragment implements Customdialog.CustomdialogListener
     }
 
 
+    @Override
+    public void onResponse(@Nullable ArrayList<Seance> Seances) {
+        for (Seance s: Seances) {
+            Log.i("i",""+s.getName());
+        }
+    }
+
+    @Override
+    public void onFailure() {
+        Log.i("i","error");
+    }
 }
