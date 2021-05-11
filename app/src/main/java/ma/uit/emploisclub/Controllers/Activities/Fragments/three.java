@@ -42,6 +42,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Formatter;
+import java.util.List;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.HorizontalCalendarView;
@@ -158,6 +160,8 @@ public class three extends Fragment implements Customdialog.CustomdialogListener
         } catch (OutOfDateRangeException e) {
             e.printStackTrace();
         }
+        //call api
+        EmploisClubCalls.fetchUserFollowing(three.this);
 
         LinearLayout liste_element = (LinearLayout) getView().findViewById(R.id.liste_date);
         //
@@ -167,7 +171,7 @@ public class three extends Fragment implements Customdialog.CustomdialogListener
 
         /* ends after 1 month from now */
         Calendar endDate = Calendar.getInstance();
-        endDate.add(Calendar.MONTH, 1);
+        endDate.add(Calendar.MONTH, 10);
 
 
 
@@ -178,7 +182,7 @@ public class three extends Fragment implements Customdialog.CustomdialogListener
 
         dataModels = new ArrayList<>();
         dataModelsSelectedDay = new ArrayList<>();
-        dataModels.add(new Seance(1, 2,"test", new DateTime(2021,4,9,10,11), (float) 34.90,false, false, ""));
+//        dataModels.add(new Seance(1, 2,"test", new DateTime(2021,4,9,10,11), (float) 34.90,false, false, ""));
 
         calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
@@ -206,7 +210,7 @@ public class three extends Fragment implements Customdialog.CustomdialogListener
                             getTacheAt(date);
                         }
                     });
-                    EmploisClubCalls.fetchUserFollowing(three.this);
+
                 }
 
 
@@ -294,34 +298,42 @@ public class three extends Fragment implements Customdialog.CustomdialogListener
 
     public ArrayList<Seance> getTacheAt(Calendar val){
         dataModelsSelectedDay.clear();
-        for (Seance s: dataModels) {
-            if(s.getDate_start().getDayOfMonth() == val.get(Calendar.DAY_OF_MONTH) && s.getDate_start().getMonthOfYear() == val.get(Calendar.MONTH)){
-                dataModelsSelectedDay.add(s);
+        if(dataModels != null){
+            for (Seance s: dataModels) {
+                if(s.getDate_start().getDayOfMonth() == val.get(Calendar.DAY_OF_MONTH) && s.getDate_start().getMonthOfYear() == val.get(Calendar.MONTH)){
+                    dataModelsSelectedDay.add(s);
+                }
             }
+            Collections.sort(dataModelsSelectedDay);
+            adapter.notifyDataSetChanged();
+            listView.post(new Runnable() {
+                @Override
+                public void run() {
+                    listView.setSelection(dataModelsSelectedDay.size()-1);
+                }
+            });
         }
-        Collections.sort(dataModelsSelectedDay);
-        adapter.notifyDataSetChanged();
-        listView.post(new Runnable() {
-            @Override
-            public void run() {
-                listView.setSelection(dataModelsSelectedDay.size()-1);
-            }
-        });
+
         return null ;
     }
 
     public void setTache(Customdialog.TacheSend val) {
         Log.i("i",""+horizontalCalendar.getSelectedDate().get(Calendar.YEAR)+horizontalCalendar.getSelectedDate().get(Calendar.MONTH)+horizontalCalendar.getSelectedDate().get(Calendar.DAY_OF_MONTH));
-        dataModels.add(new Seance(145, 2342,val.name, new DateTime(horizontalCalendar.getSelectedDate().get(Calendar.YEAR),horizontalCalendar.getSelectedDate().get(Calendar.MONTH),horizontalCalendar.getSelectedDate().get(Calendar.DAY_OF_MONTH),val.heur,val.minute), (float) 34.90, true,false, val.description));
+        dataModels.add(new Seance(145, val.name,1 , false ,  0,  new DateTime(horizontalCalendar.getSelectedDate().get(Calendar.YEAR),horizontalCalendar.getSelectedDate().get(Calendar.MONTH),horizontalCalendar.getSelectedDate().get(Calendar.DAY_OF_MONTH),val.heur,val.minute).toString(), val.description));
         getTacheAt(horizontalCalendar.getSelectedDate());
     }
 
 
     @Override
-    public void onResponse(@Nullable ArrayList<Seance> Seances) {
-        for (Seance s: Seances) {
-            Log.i("i",""+s.getName());
-        }
+    public void onResponse(@Nullable EmploisClubCalls.dataReceived Seances) {
+        if(Seances != null){
+
+                for (Seance s: Seances.getListeSeance()) {
+                    dataModels.add(new Seance(145, s.getName(),1 , false ,  0,  s.getDate_start().toString("yyyy-MM-dd HH:mm:ss"), s.getComment()));
+
+                }
+        }else Log.i("i","no data");
+
     }
 
     @Override

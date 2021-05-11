@@ -1,30 +1,58 @@
 package ma.uit.emploisclub.Model;
 
+import android.util.Log;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import org.joda.time.DateTime;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Seance implements Comparable<Seance>{
+    @SerializedName("id")
+    @Expose
     private int id ;
-    private int moniteurId ;
-    private String name;
-    private DateTime date_start;
-    private float duree;
-    private boolean is_done = false ;
+//
+//    private int moniteurId = 0 ;
 
-    public Seance(int id, int moniteurId, String name, DateTime date_start, float duree, boolean is_done, boolean collapsed, String comment) {
+    @SerializedName("description")
+    @Expose
+    private String comment ;
+
+    @SerializedName("tacheType")
+    @Expose
+    int typeTache ;
+
+    @SerializedName("isFinised")
+    @Expose
+    int isFinised ;
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    @SerializedName("dateStart")
+    @Expose
+    private String date_start;
+
+    private boolean collapsed = false ;
+
+    public Seance(int id, String name,int typeTache ,Boolean collapsed , int isFinised, String date_start,  String comment) {
         this.id = id;
-        this.moniteurId = moniteurId;
+//        this.moniteurId = moniteurId;
         this.name = name;
         this.date_start = date_start;
-        this.duree = duree;
-        this.is_done = is_done;
+        this.isFinised = isFinised;
+        this.typeTache = typeTache;
         this.collapsed = collapsed;
         this.comment = comment;
     }
 
-    private boolean collapsed = false ;
-    private String comment ;
+
+
 
     public Seance() {
     }
@@ -53,37 +81,31 @@ public class Seance implements Comparable<Seance>{
         this.id = id;
     }
 
-    public int getMoniteurId() {
-        return moniteurId;
+//    public int getMoniteurId() {
+//        return moniteurId;
+//    }
+//
+//    public void setMoniteurId(int moniteurId) {
+//        this.moniteurId = moniteurId;
+//    }
+
+    public DateTime getDate_start()  {
+        try{
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        return new DateTime(dateFormat.parse(date_start)) ;
+        }catch(Exception e){
+            Log.i("E",""+e.getMessage());
+        }
+        return null ;
+
     }
 
-    public void setMoniteurId(int moniteurId) {
-        this.moniteurId = moniteurId;
-    }
-
-    public DateTime getDate_start() {
-        return date_start;
-    }
-
-    public void setDate_start(DateTime date_start) {
+    public void setDate_start(String date_start) {
         this.date_start = date_start;
     }
 
-    public float getDuree() {
-        return duree;
-    }
-
-    public void setDuree(float duree) {
-        this.duree = duree;
-    }
-
-    public boolean isIs_done() {
-        return is_done;
-    }
-
-    public void setIs_done(boolean is_done) {
-        this.is_done = is_done;
-    }
+//
 
     public String getComment() {
         return comment;
@@ -95,6 +117,11 @@ public class Seance implements Comparable<Seance>{
 
     @Override
     public int compareTo(Seance seance) {
-        return getDate_start().compareTo(seance.getDate_start());
+        try {
+            return getDate_start().compareTo(seance.getDate_start());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0 ;
     }
 }

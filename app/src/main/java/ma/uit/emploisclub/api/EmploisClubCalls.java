@@ -1,6 +1,12 @@
 package ma.uit.emploisclub.api;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
+
+import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -12,9 +18,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EmploisClubCalls {
+
+    public class dataReceived {
+        @SerializedName("data")
+        @Expose
+        List<Seance> listeSeance ;
+
+        public List<Seance> getListeSeance() {
+            return listeSeance;
+        }
+    }
     // 1 - Creating a callback
     public interface Callbacks {
-        void onResponse(@Nullable ArrayList<Seance> users);
+        void onResponse(@Nullable dataReceived Seance);
         void onFailure();
     }
 
@@ -28,22 +44,25 @@ public class EmploisClubCalls {
         EmploisClubService emploisClubService = EmploisClubService.retrofit.create(EmploisClubService.class);
 
         // 2.3 - Create the call on Github API
-        Call<ArrayList<Seance>> call = emploisClubService.getAllTache();
+        Call<dataReceived> call = emploisClubService.getAllTache();
         // 2.4 - Start the call
-        call.enqueue(new Callback<ArrayList<Seance>>() {
+        call.enqueue(new Callback<dataReceived>() {
 
 
 
             @Override
-            public void onResponse(Call<ArrayList<Seance>> call, Response<ArrayList<Seance>> response) {
+            public void onResponse(Call<dataReceived> call, Response<dataReceived> response) {
+
                 // 2.5 - Call the proper callback used in controller (MainFragment)
                 if (callbacksWeakReference.get() != null) callbacksWeakReference.get().onResponse(response.body());
+
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Seance>> call, Throwable t) {
+            public void onFailure(Call<dataReceived> call, Throwable t) {
                 // 2.5 - Call the proper callback used in controller (MainFragment)
                 if (callbacksWeakReference.get() != null) callbacksWeakReference.get().onFailure();
+                Log.i("E", ""+call.toString()+"  "+t.getMessage());
             }
         });
     }

@@ -12,8 +12,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 interface EmploisClubService {
-    @GET(R.string.GetAllTache+"")
-    Call<ArrayList<Seance>> getAllTache();
+    @GET("GetTache.php")
+    Call<EmploisClubCalls.dataReceived> getAllTache();
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://emploisclub.000webhostapp.com/")

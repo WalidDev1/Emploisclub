@@ -103,20 +103,25 @@ public class RecyclerViewAdapterListeSeance extends ArrayAdapter<Seance> impleme
             result=convertView;
         }
 
-        if(calander.get(Calendar.MONTH) >= dataModel.getDate_start().getMonthOfYear() && calander.get(Calendar.DAY_OF_MONTH) >= dataModel.getDate_start().getDayOfMonth()){
-            // on ajout 8 a l'heur pour avoir le format 24h
-            if(calander.get(Calendar.HOUR_OF_DAY) >= dataModel.getDate_start().getHourOfDay() && calander.get(Calendar.MINUTE) >= dataModel.getDate_start().getMinuteOfHour()){
+        if(dataModel != null){
+            Log.i("T",""+dataModel.getDate_start());
+            if(calander.get(Calendar.MONTH) >= dataModel.getDate_start().getMonthOfYear() && calander.get(Calendar.DAY_OF_MONTH) >= dataModel.getDate_start().getDayOfMonth()){
+                // on ajout 8 a l'heur pour avoir le format 24h
+                if(calander.get(Calendar.HOUR_OF_DAY) >= dataModel.getDate_start().getHourOfDay() && calander.get(Calendar.MINUTE) >= dataModel.getDate_start().getMinuteOfHour()){
 
-                ((ConstraintLayout) result.findViewById(R.id.constaintHeader)).setAlpha((float) 0.5);
-                ((LinearLayout) result.findViewById(R.id.layout_des)).setVisibility(View.VISIBLE);
+                    ((ConstraintLayout) result.findViewById(R.id.constaintHeader)).setAlpha((float) 0.5);
+                    ((LinearLayout) result.findViewById(R.id.layout_des)).setVisibility(View.VISIBLE);
 
 
+                }
             }
         }
+
+
         lastPosition = position;
     Log.i("t u",""+dataModel.getDate_start().getHourOfDay() +" : "+dataModel.getDate_start().getMinuteOfHour());
         viewHolder.txtName.setText(dataModel.getName()+"");
-        viewHolder.txtBbr.setText(dataModel.getMoniteurId()+"");
+//        viewHolder.txtBbr.setText(dataModel.getMoniteurId()+"");
         viewHolder.txtTime.setText(dataModel.getDate_start().getHourOfDay()+" : "+dataModel.getDate_start().getMinuteOfHour());
         viewHolder.txtDescription.setText(dataModel.getComment()+"");
         // Return the completed view to render on screen
