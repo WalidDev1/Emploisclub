@@ -92,6 +92,92 @@
                 android:layout_height="0.01in"
                 android:background="@color/black"
                 />
+            <!-- Reserver au Coach -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="16dp"
+                    android:text="223 k client vous on choisi"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_iconstar"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:layout_marginStart="15dp"
+                        android:text="Votre score"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingStart="40dp"
+                        android:paddingEnd="20dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/Start1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_starfull" />
+                        <ImageView
+                            android:id="@+id/Start2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_starfull" />
+                        <ImageView
+                            android:id="@+id/Start3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_starhalf" />
+                        <ImageView
+                            android:id="@+id/Start4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_star" />
+                        <ImageView
+                            android:id="@+id/Start5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_star" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10sp"
+                    android:layout_height="0.01in"
+                    android:background="@color/black"
+                    />
+            </LinearLayout>
+            <!-- ***************** -->
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
@@ -145,9 +231,12 @@
                 android:layout_height="0.01in"
                 android:background="@color/black"
                 />
+
+<!--    Reserver au Client        -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 >
@@ -174,6 +263,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vvp"
                 android:overScrollMode="never"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="1.3in"
                 android:clipToPadding="false"
@@ -185,12 +275,366 @@
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="0.1in"
                 app:ci_width="0.1in"
                 app:ci_gravity="center"
                 app:ci_drawable="@drawable/dots"
                 />
+            <!-- ***************** -->
+            <!-- Reserver au personelle  Tache -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                >
+                <ImageView
+                    android:id="@+id/lab4"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="0.2in"
+                    android:layout_height="0.2in"
+                    android:layout_marginLeft="0.06in"
+                    android:src="@drawable/ic_iconetache" />
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="20dp"
+                    android:text="Tâche a faire " />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/listeTache"
+                android:visibility="gone"
+                android:overScrollMode="never"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:clipToPadding="false"
+                android:foregroundGravity="center"
+                >
 
+            </androidx.viewpager.widget.ViewPager>
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicatorTache"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="0.1in"
+                app:ci_gravity="center"
+                app:ci_drawable="@drawable/dotstache"
+                />
+
+
+            <!-- ***************** -->
+            <!-- Reserver a l admin   -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                >
+                <ImageView
+                    android:id="@+id/lab5"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="0.2in"
+                    android:layout_height="0.2in"
+                    android:layout_marginLeft="0.06in"
+                    android:src="@drawable/ic_iconetache" />
+                <TextView
+                    android:id="@+id/txt4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="20dp"
+                    android:text="Tâche globle " />
+                
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:id="@+id/btn_see_all"
+                    >
+                    <TextView
+                        android:layout_width="90dp"
+                        android:textColor="@color/black"
+                        android:gravity="center | end"
+                        android:layout_height="match_parent"
+                        android:text="Voir tout"
+                        />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_icone_btn_click_all"
+                        />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageUser0"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgtest"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.051"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:shapeAppearance="@style/RoundedSquare" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@id/imageUser0"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    >
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="170dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hamid moul djaj"
+                            ></TextView>
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="10dp"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:progressDrawable="@drawable/progress_bar_custom_horizontal"
+                            android:layout_height="5dp"
+                            android:progress="25"
+                            >
+
+                        </ProgressBar>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_percent_tache_red"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="20 %"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_logohorsecoach"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageUser2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgtest"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.051"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:shapeAppearance="@style/RoundedSquare" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@id/imageUser2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    >
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="170dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hamid moul djaj"
+                            ></TextView>
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="10dp"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:progressDrawable="@drawable/progress_bar_custom_horizontal"
+                            android:layout_height="5dp"
+                            android:progress="25"
+                            >
+
+                        </ProgressBar>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_percent_tache_succes"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="20 %"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_logohorsecoach"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageUser3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgtest"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.051"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:shapeAppearance="@style/RoundedSquare" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@id/imageUser3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    >
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="170dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hamid moul djaj"
+                            ></TextView>
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="10dp"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:progressDrawable="@drawable/progress_bar_custom_horizontal"
+                            android:layout_height="5dp"
+                            android:progress="25"
+                            >
+
+                        </ProgressBar>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_percent_tache_red"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="20 %"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_logohorsecoach"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- ***************** -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="10sp"
+                android:layout_height="0.01in"
+                android:background="@color/black"
+                />
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
@@ -228,6 +672,16 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
         </TableLayout>
     </ScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/button_sheet"
+        >
+
+        <include layout="@layout/button_sheet_all_user" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

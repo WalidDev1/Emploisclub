@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
@@ -37,6 +39,7 @@ public class CardModelAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.itemcard , container , false);
+//        Button testbtn = (Button)
         container.addView(view,0);
 
         return view;

@@ -104,8 +104,7 @@ public class RecyclerViewAdapterListeSeance extends ArrayAdapter<Seance> impleme
         }
 
         if(dataModel != null){
-            Log.i("T",""+dataModel.getDate_start());
-            if(calander.get(Calendar.MONTH) >= dataModel.getDate_start().getMonthOfYear() && calander.get(Calendar.DAY_OF_MONTH) >= dataModel.getDate_start().getDayOfMonth()){
+            if(calander.get(Calendar.MONTH)+1 >= dataModel.getDate_start().getMonthOfYear() && calander.get(Calendar.DAY_OF_MONTH) >= dataModel.getDate_start().getDayOfMonth()){
                 // on ajout 8 a l'heur pour avoir le format 24h
                 if(calander.get(Calendar.HOUR_OF_DAY) >= dataModel.getDate_start().getHourOfDay() && calander.get(Calendar.MINUTE) >= dataModel.getDate_start().getMinuteOfHour()){
 
@@ -119,7 +118,6 @@ public class RecyclerViewAdapterListeSeance extends ArrayAdapter<Seance> impleme
 
 
         lastPosition = position;
-    Log.i("t u",""+dataModel.getDate_start().getHourOfDay() +" : "+dataModel.getDate_start().getMinuteOfHour());
         viewHolder.txtName.setText(dataModel.getName()+"");
 //        viewHolder.txtBbr.setText(dataModel.getMoniteurId()+"");
         viewHolder.txtTime.setText(dataModel.getDate_start().getHourOfDay()+" : "+dataModel.getDate_start().getMinuteOfHour());

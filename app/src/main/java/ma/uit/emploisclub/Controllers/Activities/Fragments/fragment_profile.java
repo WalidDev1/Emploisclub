@@ -1,14 +1,19 @@
 package ma.uit.emploisclub.Controllers.Activities.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,10 +22,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -28,15 +37,21 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.joda.time.DateTime;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.RecyclerViewAdapterListeSeance;
+import ma.uit.emploisclub.Data.GlobaleData;
 import ma.uit.emploisclub.Model.Seance;
 import ma.uit.emploisclub.R;
 
+import static android.app.Activity.RESULT_OK;
 import static ma.uit.emploisclub.Controllers.MainActivity.getScreenWidth;
 
 /**
@@ -45,7 +60,16 @@ import static ma.uit.emploisclub.Controllers.MainActivity.getScreenWidth;
  * create an instance of this fragment.
  */
 public class fragment_profile extends Fragment {
-    private BottomSheetBehavior bottomSheetBehavior;
+
+    private static final int RESULT_LOAD_IMG = 123 ;
+    TextView idUser ;
+    TextView typeCompte ;
+    TextInputLayout editNom ;
+    TextInputLayout editPrenom ;
+    TextInputLayout editAdresse ;
+    TextInputLayout editTel ;
+    ImageButton btnImage ;
+    ImageView imageProfileView ;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -96,9 +120,59 @@ public class fragment_profile extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
+        super.onViewCreated(view, savedInstanceState);
+        imageProfileView = (ImageView) getView().findViewById(R.id.shapeableImageView) ;
+        typeCompte = (TextView) getView().findViewById(R.id.typeProfile);
+        idUser = (TextView) getView().findViewById(R.id.idProfile);
+        editNom= (TextInputLayout) getView().findViewById(R.id.nomProfile);
+        editPrenom = (TextInputLayout) getView().findViewById(R.id.prenomProfile);
+        editAdresse = (TextInputLayout) getView().findViewById(R.id.AdresseMail);
+        editTel = (TextInputLayout) getView().findViewById(R.id.telProfile);
+        btnImage = (ImageButton) getView().findViewById(R.id.btnAddImage) ;
+        initInformation();
+        btnImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickAddImage();
+            }
+        });
+    }
+
+    public void initInformation(){
+        switch (GlobaleData.user.getRole()){
+            case 1 :
+                typeCompte.setText("Compte administrateur");
+                break ;
+            case 2 :
+                typeCompte.setText("Compte client");
+                break ;
+            case 3 :
+                typeCompte.setText("Compte coach");
+                break;
+            default:
+                break;
+        }
+
+        idUser.setText("Id : "+GlobaleData.user.getId());
+        editNom.getEditText().setText(GlobaleData.user.getNom());
+        editPrenom.getEditText().setText(GlobaleData.user.getPrenom());
+        editAdresse.getEditText().setText(GlobaleData.user.getAdresse());
+        editTel.getEditText().setText(GlobaleData.user.getTel());
 
     }
 
+    public void onClickAddImage(){
+        Intent photoPickerIntent = new Intent();
+        photoPickerIntent.setType("image/*");
+        photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(photoPickerIntent ,"Selectionner une image"), RESULT_LOAD_IMG);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK && data != null)  imageProfileView.setImageURI(data.getData());
+    }
 }

@@ -7,46 +7,209 @@
     tools:context=".Controllers.Activities.Fragments.fragment_profile">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:id="@+id/coordinator"
-        android:background="@color/horseColor"
-        android:layout_height="match_parent">
 
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_time_liste"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/datePickerTimeline">
+            app:layout_constraintTop_toTopOf="parent">
 
-
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="0.4in"
-                android:layout_height="0.06in"
-                android:layout_marginTop="19dp"
-                android:layout_gravity="center"
-                android:background="@drawable/edge_page" />
-
-            <com.baoyz.swipemenulistview.SwipeMenuListView
-                android:id="@+id/list"
-                android:divider="@null"
-                android:dividerHeight="10.0sp"
-                android:padding="15dp"
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="10dp"
+                    android:id="@+id/typeProfile"
+                    android:text="Compte moniteur"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+
+                        android:id="@+id/shapeableImageView"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imgtest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.2"
+                        app:shapeAppearance="@style/RoundedSquare"
+                        app:strokeColor="@color/horseColor"
+                        app:strokeWidth="5dp" />
+                    <ImageButton
+                        android:id="@+id/btnAddImage"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bg_btn_addimg"
+                        android:src="@drawable/ic_icone_camera"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.668"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.963" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/idProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:text=" Id : 230495"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/prenomProfile"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="1.9in"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:hint="Prenom"
+                    android:padding="10dp"
+                    android:textColorHint="@color/horseColor"
+                    app:boxStrokeColor="@color/horseColor"
+                    app:boxStrokeWidth="3dp"
+                    app:hintTextColor="@color/horseColor">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nomProfile"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="1.9in"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:hint="Nom"
+                    android:padding="10dp"
+                    android:textColorHint="@color/horseColor"
+                    app:boxStrokeColor="@color/horseColor"
+                    app:boxStrokeWidth="3dp"
+                    app:hintTextColor="@color/horseColor">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/AdresseMail"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="1.9in"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:hint="Adresse mail"
+                    android:padding="10dp"
+                    android:textColorHint="@color/horseColor"
+                    app:boxStrokeColor="@color/horseColor"
+                    app:boxStrokeWidth="3dp"
+                    app:hintTextColor="@color/horseColor">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/telProfile"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="1.9in"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:hint="Telephone"
+                    android:padding="10dp"
+                    android:textColorHint="@color/horseColor"
+                    app:boxStrokeColor="@color/horseColor"
+                    app:boxStrokeWidth="3dp"
+                    app:hintTextColor="@color/horseColor">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/Preneom"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="1.9in"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:hint="Prenom"
+                    android:padding="10dp"
+                    android:textColorHint="@color/horseColor"
+                    app:boxStrokeColor="@color/horseColor"
+                    app:boxStrokeWidth="3dp"
+                    app:hintTextColor="@color/horseColor">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/containedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginEnd="70dp"
+                    android:text="Modifier"
+                    android:theme="@style/CustomAppThemeField" />
+            </TableLayout>
+        </ScrollView>
+   
 </FrameLayout>

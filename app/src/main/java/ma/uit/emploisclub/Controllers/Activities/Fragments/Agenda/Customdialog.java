@@ -3,36 +3,23 @@ package ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.RunnableScheduledFuture;
-
-import ma.uit.emploisclub.Controllers.Activities.Fragments.three;
-import ma.uit.emploisclub.Model.Seance;
 import ma.uit.emploisclub.R;
 
 public class Customdialog extends DialogFragment implements View.OnClickListener {
