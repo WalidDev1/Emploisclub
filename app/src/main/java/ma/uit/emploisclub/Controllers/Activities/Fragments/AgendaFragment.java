@@ -314,7 +314,6 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
         dataModelsSelectedDay.clear();
         if(dataModels != null){
             for (Seance s: dataModels) {
-                Log.i("i",""+s.getDate_start());
                 if(s.getDate_start().getDayOfMonth() == val.get(Calendar.DAY_OF_MONTH)  && s.getDate_start().getMonthOfYear() - 1 == val.get(Calendar.MONTH) ){
                     dataModelsSelectedDay.add(s);
                 }

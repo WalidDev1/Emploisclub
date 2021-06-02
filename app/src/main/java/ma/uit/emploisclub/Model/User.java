@@ -1,5 +1,7 @@
 package ma.uit.emploisclub.Model;
 
+import java.util.Date;
+
 public class User {
 
     int id ;
@@ -9,6 +11,9 @@ public class User {
     String adresse ;
     String tel ;
     String mail ;
+    String imageProfile ;
+    Date dateContrat ;
+    Date lastCnx ;
 
     public User() {
     }

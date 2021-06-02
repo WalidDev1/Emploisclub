@@ -92,9 +92,43 @@
                 android:layout_height="0.01in"
                 android:background="@color/black"
                 />
+            <LinearLayout
+                android:id="@+id/txtStateAppAdmin"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="190dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Nombre de client :"/>
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="390 000"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icone_down"
+                    android:padding="15dp"
+                    />
+            </LinearLayout>
             <!-- Reserver au Coach -->
             <LinearLayout
+                android:id="@+id/txtCoachState"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
@@ -235,8 +269,9 @@
 <!--    Reserver au Client        -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:orientation="horizontal"
+                android:id="@+id/txtactivity"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 >
@@ -263,7 +298,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vvp"
                 android:overScrollMode="never"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="1.3in"
                 android:clipToPadding="false"
@@ -275,7 +310,7 @@
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_height="0.1in"
                 app:ci_width="0.1in"
                 app:ci_gravity="center"
@@ -285,6 +320,7 @@
             <!-- Reserver au personelle  Tache -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:orientation="horizontal"
+                android:id="@+id/layoutTache"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -332,309 +368,589 @@
 
             <!-- ***************** -->
             <!-- Reserver a l admin   -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:orientation="horizontal"
+            <LinearLayout
+                android:id="@+id/listeAdminCA"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                >
-                <ImageView
-                    android:id="@+id/lab5"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="0.2in"
-                    android:layout_height="0.2in"
-                    android:layout_marginLeft="0.06in"
-                    android:src="@drawable/ic_iconetache" />
-                <TextView
-                    android:id="@+id/txt4"
-                    android:layout_width="wrap_content"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="20dp"
-                    android:text="Tâche globle " />
-                
-                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="end"
-                    android:id="@+id/btn_see_all"
+                    android:layout_marginTop="10dp"
                     >
+                    <ImageView
+                        android:id="@+id/lab5"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="0.2in"
+                        android:layout_height="0.2in"
+                        android:layout_marginLeft="0.06in"
+                        android:src="@drawable/ic_iconetache" />
                     <TextView
-                        android:layout_width="90dp"
+                        android:id="@+id/txt4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:gravity="center | end"
-                        android:layout_height="match_parent"
-                        android:text="Voir tout"
-                        />
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_icone_btn_click_all"
-                        />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                >
-
-
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageUser0"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/imgtest"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.051"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:shapeAppearance="@style/RoundedSquare" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toEndOf="@id/imageUser0"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    >
+                        android:textStyle="bold"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:text="Tâche globle " />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="170dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Hamid moul djaj"
-                            ></TextView>
-                        <ProgressBar
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="10dp"
-                            style="@android:style/Widget.ProgressBar.Horizontal"
-                            android:progressDrawable="@drawable/progress_bar_custom_horizontal"
-                            android:layout_height="5dp"
-                            android:progress="25"
-                            >
-
-                        </ProgressBar>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_percent_tache_red"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        >
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="20 %"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_logohorsecoach"
-                        />
+                        android:gravity="end"
+                        android:id="@+id/btn_see_all"
+                        >
+                        <TextView
+                            android:layout_width="90dp"
+                            android:textColor="@color/black"
+                            android:gravity="center | end"
+                            android:layout_height="match_parent"
+                            android:text="Voir tout"
+                            />
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_icone_btn_click_all"
+                            />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                >
-
-
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageUser2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/imgtest"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.051"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:shapeAppearance="@style/RoundedSquare" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toEndOf="@id/imageUser2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     >
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="170dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Hamid moul djaj"
-                            ></TextView>
-                        <ProgressBar
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="10dp"
-                            style="@android:style/Widget.ProgressBar.Horizontal"
-                            android:progressDrawable="@drawable/progress_bar_custom_horizontal"
-                            android:layout_height="5dp"
-                            android:progress="25"
-                            >
 
-                        </ProgressBar>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_percent_tache_succes"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageUser0"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imgtest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.051"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:shapeAppearance="@style/RoundedSquare" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/imageUser0"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         >
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="170dp"
+                            android:layout_marginStart="10dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="20 %"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Hamid moul djaj"
+                                ></TextView>
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="10dp"
+                                style="@android:style/Widget.ProgressBar.Horizontal"
+                                android:progressDrawable="@drawable/progress_bar_custom_horizontal"
+                                android:layout_height="5dp"
+                                android:progress="25"
+                                >
+
+                            </ProgressBar>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_percent_tache_red"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="12dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="20 %"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_logohorsecoach"
                             />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logohorsecoach"
-                        />
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                >
-
-
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageUser3"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/imgtest"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.051"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:shapeAppearance="@style/RoundedSquare" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toEndOf="@id/imageUser3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     >
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="170dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Hamid moul djaj"
-                            ></TextView>
-                        <ProgressBar
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="10dp"
-                            style="@android:style/Widget.ProgressBar.Horizontal"
-                            android:progressDrawable="@drawable/progress_bar_custom_horizontal"
-                            android:layout_height="5dp"
-                            android:progress="25"
-                            >
 
-                        </ProgressBar>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_percent_tache_red"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageUser2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imgtest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.051"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:shapeAppearance="@style/RoundedSquare" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/imageUser2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         >
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="170dp"
+                            android:layout_marginStart="10dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="20 %"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Hamid moul djaj"
+                                ></TextView>
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="10dp"
+                                style="@android:style/Widget.ProgressBar.Horizontal"
+                                android:progressDrawable="@drawable/progress_bar_custom_horizontal"
+                                android:layout_height="5dp"
+                                android:progress="25"
+                                >
 
+                            </ProgressBar>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_percent_tache_succes"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="12dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="20 %"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_logohorsecoach"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageUser3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imgtest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.051"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:shapeAppearance="@style/RoundedSquare" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/imageUser3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="170dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Hamid moul djaj"
+                                ></TextView>
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="10dp"
+                                style="@android:style/Widget.ProgressBar.Horizontal"
+                                android:progressDrawable="@drawable/progress_bar_custom_horizontal"
+                                android:layout_height="5dp"
+                                android:progress="25"
+                                >
+
+                            </ProgressBar>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_percent_tache_red"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="12dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="20 %"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_logohorsecoach"
+                            />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- ***************** -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10sp"
+                    android:layout_height="0.01in"
+                    android:background="@color/black"
+                    />
+                <!-- Reserver a l admin   -->
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    >
                     <ImageView
+                        android:id="@+id/labUser5"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="0.2in"
+                        android:layout_height="0.2in"
+                        android:layout_marginLeft="0.06in"
+                        android:src="@android:drawable/ic_menu_myplaces" />
+                    <TextView
+                        android:id="@+id/txtUser4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="20dp"
+                        android:text="Liste des clients " />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_logohorsecoach"
-                        />
+                        android:gravity="end"
+                        android:id="@+id/btn_see_allUser"
+                        >
+                        <TextView
+                            android:layout_width="90dp"
+                            android:textColor="@color/black"
+                            android:gravity="center | end"
+                            android:layout_height="match_parent"
+                            android:text="Voir tout"
+                            />
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_icone_btn_click_all"
+                            />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <!-- ***************** -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginTop="10sp"
-                android:layout_height="0.01in"
-                android:background="@color/black"
-                />
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageUser0User"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imgtest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.051"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:shapeAppearance="@style/RoundedSquare" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/imageUser0User"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="170dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="Hamid moul djaj"
+                                ></TextView>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_percent_tache_red"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="12dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="Abonnement"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageUser2User"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imgtest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.051"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:shapeAppearance="@style/RoundedSquare" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/imageUser2User"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="170dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="Hamid moul djaj"
+                                ></TextView>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_percent_tache_succes"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="12dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="Abonnement"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageUser3User"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/imgtest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.051"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:shapeAppearance="@style/RoundedSquare" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@id/imageUser3User"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="170dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:text="Hamid moul djaj"
+                                ></TextView>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_percent_tache_red"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="12dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="Abonnement"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- ***************** -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10sp"
+                    android:layout_height="0.01in"
+                    android:background="@color/black"
+                    />
+            </LinearLayout>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
@@ -680,7 +996,12 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         android:id="@+id/button_sheet"
         >
 
-        <include layout="@layout/button_sheet_all_user" />
+        <include
+            android:id="@+id/bottom_sheet_behavior_id"
+
+            android:background="@color/black"
+
+            layout="@layout/button_sheet_all_user" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

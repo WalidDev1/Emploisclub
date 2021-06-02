@@ -26,16 +26,20 @@ import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
 import com.github.lguipeng.library.animcheckbox.AnimCheckBox;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import ma.uit.emploisclub.Controllers.Activities.Fragments.ButtonSheet.ButtonSheetGrid;
 import ma.uit.emploisclub.Controllers.CardItem.CardModel;
 import ma.uit.emploisclub.Controllers.CardItem.CardModelAdapter;
 import ma.uit.emploisclub.Controllers.CardItem.ListeTacheAdapter;
 import ma.uit.emploisclub.Data.GlobaleData;
+import ma.uit.emploisclub.Model.Coach;
 import ma.uit.emploisclub.Model.Tache;
 import ma.uit.emploisclub.R;
 import me.relex.circleindicator.CircleIndicator;
@@ -201,16 +205,53 @@ public class MainFragment extends Fragment {
             e.printStackTrace();
         }
 
+       checkUser(GlobaleData.user.getRole(),getView());
 
-        btnVoirTout = (LinearLayoutCompat) getView().findViewById(R.id.btn_see_all);
-        btnVoirTout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Get the github_url text here
-                ((CoordinatorLayout) getView().findViewById(R.id.button_sheet)).setVisibility(View.VISIBLE);
-//                ((CoordinatorLayout) getView().findViewById(R.id.button_sheet)).setstat
-            }
-        });
-//
+    }
+
+    public void checkUser(int idRole , View view){
+        view.findViewById(R.id.txtStateAppAdmin).setVisibility(View.GONE);
+        view.findViewById(R.id.listeTache).setVisibility(View.GONE);
+        view.findViewById(R.id.listeAdminCA).setVisibility(View.GONE);
+        view.findViewById(R.id.txtactivity).setVisibility(View.GONE);
+        view.findViewById(R.id.vvp).setVisibility(View.GONE);
+        view.findViewById(R.id.indicator).setVisibility(View.GONE);
+        view.findViewById(R.id.txtCoachState).setVisibility(View.GONE);
+        view.findViewById(R.id.layoutTache).setVisibility(View.GONE);
+        view.findViewById(R.id.indicatorTache).setVisibility(View.GONE);
+        switch(idRole){
+            case 1:
+
+                view.findViewById(R.id.txtStateAppAdmin).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.listeAdminCA).setVisibility(View.VISIBLE);
+                btnVoirTout = (LinearLayoutCompat) view.findViewById(R.id.btn_see_all);
+                btnVoirTout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((CoordinatorLayout) view.findViewById(R.id.button_sheet)).setVisibility(View.VISIBLE);
+
+                        ButtonSheetGrid bottomSheetFragment = new ButtonSheetGrid(((CoordinatorLayout) view.findViewById(R.id.button_sheet)));
+                        bottomSheetFragment.show(getFragmentManager(), bottomSheetFragment.getTag());
+                    }
+                });
+                break;
+            case 3:
+
+                view.findViewById(R.id.listeTache).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.txtCoachState).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.layoutTache).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.indicatorTache).setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                view.findViewById(R.id.listeTache).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.layoutTache).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.indicatorTache).setVisibility(View.VISIBLE);
+                break;
+            default :
+
+                view.findViewById(R.id.txtactivity).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.vvp).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+        }
     }
 }
