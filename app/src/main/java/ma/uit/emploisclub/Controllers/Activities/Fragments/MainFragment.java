@@ -205,7 +205,7 @@ public class MainFragment extends Fragment {
             e.printStackTrace();
         }
 
-       checkUser(GlobaleData.user.getRole(),getView());
+       checkUser(Integer.parseInt(GlobaleData.user.getRole()) ,getView());
 
     }
 

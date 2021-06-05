@@ -60,6 +60,7 @@
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutAddSeance"
                 android:layout_width="match_parent"
                 android:layout_height="280px"
                 android:layout_marginStart="10dp"

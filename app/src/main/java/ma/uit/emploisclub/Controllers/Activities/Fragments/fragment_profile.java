@@ -140,7 +140,7 @@ public class fragment_profile extends Fragment {
     }
 
     public void initInformation(){
-        switch (GlobaleData.user.getRole()){
+        switch (Integer.parseInt(GlobaleData.user.getRole()) ){
             case 1 :
                 typeCompte.setText("Compte administrateur");
                 break ;

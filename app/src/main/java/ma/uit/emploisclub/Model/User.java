@@ -1,24 +1,50 @@
 package ma.uit.emploisclub.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import org.joda.time.DateTime;
+
 import java.util.Date;
 
 public class User {
 
-    int id ;
-    int role ; // 1 = Admin , 2 = Client , 3 Coach , 4 other
+    @SerializedName("id")
+    @Expose
+    String id ;
+
+    @SerializedName("role")
+    @Expose
+    String role ; // 1 = Admin , 2 = Client , 3 Coach , 4 other
+
+    @SerializedName("nom")
+    @Expose
     String nom ;
+
+    @SerializedName("prenom")
+    @Expose
     String prenom ;
     String adresse ;
+
+    @SerializedName("userPhone")
+    @Expose
     String tel ;
+
     String mail ;
+
+    @SerializedName("photo")
+    @Expose
     String imageProfile ;
-    Date dateContrat ;
+
+    @SerializedName("contractDate")
+    @Expose
+    String dateContrat ;
     Date lastCnx ;
 
     public User() {
     }
 
-    public User(int id, String nom, String prenom, String adresse, String tel, String mail ,int  role) {
+    public User(String id, String nom, String prenom, String adresse, String tel, String mail ,String  role) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -28,19 +54,19 @@ public class User {
         this.role = role ;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

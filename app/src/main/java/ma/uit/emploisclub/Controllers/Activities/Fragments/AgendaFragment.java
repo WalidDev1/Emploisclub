@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.MotionEventCompat;
 import androidx.fragment.app.Fragment;
 
@@ -39,6 +41,7 @@ import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.Customdialog;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.RecyclerViewAdapterListeSeance;
+import ma.uit.emploisclub.Controllers.Activities.Fragments.ButtonSheet.ButtonSheetGrid;
 import ma.uit.emploisclub.Data.GlobaleData;
 import ma.uit.emploisclub.Model.Seance;
 import ma.uit.emploisclub.R;
@@ -51,7 +54,7 @@ import static ma.uit.emploisclub.Controllers.MainActivity.getScreenWidth;
  * Use the {@link AgendaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AgendaFragment extends Fragment implements Customdialog.CustomdialogListener ,  EmploisClubCalls.Callbacks{
+public class AgendaFragment extends Fragment implements Customdialog.CustomdialogListener {
     private int first_position = -1;
     private View first_view;
     private static RecyclerViewAdapterListeSeance adapter;
@@ -61,23 +64,23 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
     ArrayList<Seance> dataModelsSelectedDay; // liste Filtrer delon le jour selectionner
     HorizontalCalendar horizontalCalendar ;
 
-    @Override
-    public void onResponse(@Nullable EmploisClubCalls.dataReceived Seances) {
-        if(Seances != null){
-            GlobaleData.globaleListe = new ArrayList<>();
-            for (Seance s: Seances.getListeSeance()) {
-                GlobaleData.globaleListe.add(new Seance(145, s.getName(),1 , false ,  0,  s.getDate_start().toString("yyyy-MM-dd HH:mm:ss"), s.getComment()));
-            }
-            setInitialTache(GlobaleData.globaleListe);
-
-        }else Log.i("i","no data on reponse ");
-
-    }
-
-    @Override
-    public void onFailure() {
-        Log.i("i","error");
-    }
+//    @Override
+//    public void onResponse(@Nullable EmploisClubCalls.dataReceived Seances) {
+//        if(Seances != null){
+//            GlobaleData.globaleListe = new ArrayList<>();
+//            for (Seance s: Seances.getListeSeance()) {
+//                GlobaleData.globaleListe.add(new Seance(145, s.getName(),1 , false ,  0,  s.getDate_start().toString("yyyy-MM-dd HH:mm:ss"), s.getComment()));
+//            }
+//            setInitialTache(GlobaleData.globaleListe);
+//
+//        }else Log.i("i","no data on reponse ");
+//
+//    }
+//
+//    @Override
+//    public void onFailure() {
+//        Log.i("i","error");
+//    }
 
 
     SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -171,8 +174,8 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
             e.printStackTrace();
         }
 
-        //call api
-        EmploisClubCalls.fetchUserFollowing(this);
+//        //call api
+//        EmploisClubCalls.fetchUserFollowing(this);
 
         LinearLayout liste_element = (LinearLayout) getView().findViewById(R.id.liste_date);
         //
@@ -284,30 +287,72 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
                 }
             }
         });
-        listView.setMenuCreator(creator);
 
-        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                dataModels.remove(dataModelsSelectedDay.get(position));
-                getTacheAt(horizontalCalendar.getSelectedDate());
-                return false;
-            }
+        checkUser(Integer.parseInt(GlobaleData.user.getRole()) ,getView());
 
-            // erreur lors de la suppression rah ma khedamache lya la position hit endi deux liste meni tan supprimer liste 1 fune position l element na pas la meme position fla deusieme liste ils faut presendre selon les id
 
-        });
+    }
 
-        // ADD tache
+    public void checkUser(int idRole , View view){
+        view.findViewById(R.id.layoutAddSeance).setVisibility(View.GONE);
         Button btnaddTache = (Button) getView().findViewById(R.id.add_tache);
-        btnaddTache.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Customdialog cdd =new Customdialog();
-                cdd.show(getFragmentManager(),"");
-                cdd.setTargetFragment(AgendaFragment.this, 1);
-            }
-        });
+        switch(idRole){
+            case 1:
+
+                view.findViewById(R.id.layoutAddSeance).setVisibility(View.VISIBLE);
+                listView.setMenuCreator(creator);
+
+                listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                        dataModels.remove(dataModelsSelectedDay.get(position));
+                        getTacheAt(horizontalCalendar.getSelectedDate());
+                        return false;
+                    }
+
+                    // erreur lors de la suppression rah ma khedamache lya la position hit endi deux liste meni tan supprimer liste 1 fune position l element na pas la meme position fla deusieme liste ils faut presendre selon les id
+
+                });
+                // ADD tache
+
+                btnaddTache.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        Customdialog cdd =new Customdialog();
+                        cdd.show(getFragmentManager(),"");
+                        cdd.setTargetFragment(AgendaFragment.this, 1);
+                    }
+                });
+                break;
+            case 3:
+
+                view.findViewById(R.id.layoutAddSeance).setVisibility(View.VISIBLE);
+                listView.setMenuCreator(creator);
+
+                listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                        dataModels.remove(dataModelsSelectedDay.get(position));
+                        getTacheAt(horizontalCalendar.getSelectedDate());
+                        return false;
+                    }
+
+                    // erreur lors de la suppression rah ma khedamache lya la position hit endi deux liste meni tan supprimer liste 1 fune position l element na pas la meme position fla deusieme liste ils faut presendre selon les id
+
+                });
+                // ADD tache
+                btnaddTache.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        Customdialog cdd =new Customdialog();
+                        cdd.show(getFragmentManager(),"");
+                        cdd.setTargetFragment(AgendaFragment.this, 1);
+                    }
+                });
+                break;
+            default :
+                break;
+    }
     }
 
     public ArrayList<Seance> getTacheAt(Calendar val){

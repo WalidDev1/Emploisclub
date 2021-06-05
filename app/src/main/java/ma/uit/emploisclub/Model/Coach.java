@@ -13,7 +13,7 @@ public class Coach extends User{
     public Coach() {
     }
 
-    public Coach(int id, String nom, String prenom, String adresse, String tel, String mail, int role, int id1, int nbrClient, ArrayList<Tache> listeTache, ArrayList<Seance> listeSeance, double score) {
+    public Coach(String id, String nom, String prenom, String adresse, String tel, String mail, String role, int id1, int nbrClient, ArrayList<Tache> listeTache, ArrayList<Seance> listeSeance, double score) {
         super(id, nom, prenom, adresse, tel, mail, role);
         this.id = id1;
         this.nbrClient = nbrClient;
@@ -22,13 +22,11 @@ public class Coach extends User{
         this.score = score;
     }
 
-    @Override
-    public int getId() {
+    public int getIdCoach() {
         return id;
     }
 
-    @Override
-    public void setId(int id) {
+    public void getIdCoach(int id) {
         this.id = id;
     }
 
