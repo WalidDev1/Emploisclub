@@ -7,14 +7,19 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import ma.uit.emploisclub.Loader.myLoader;
 import ma.uit.emploisclub.Model.Coach;
 import ma.uit.emploisclub.Model.Seance;
 import ma.uit.emploisclub.Model.Tache;
 import ma.uit.emploisclub.Model.User;
+import ma.uit.emploisclub.api.APIClient;
+import ma.uit.emploisclub.api.EmploisClubService;
 
 public class GlobaleData  {
 
 
+    public static EmploisClubService apiInterface = APIClient.getClient().create(EmploisClubService .class);
+    public static myLoader newFragment = new myLoader();
     public static ArrayList<Seance> globaleListe = new ArrayList<>() ;
     public static ArrayList<Tache> globaleListeTache = new ArrayList<>();
     public static ArrayList<Coach> globaleListeCoach = new ArrayList<Coach>(){{

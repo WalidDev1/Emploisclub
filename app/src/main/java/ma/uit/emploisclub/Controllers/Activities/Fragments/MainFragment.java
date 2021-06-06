@@ -115,47 +115,6 @@ public class MainFragment extends Fragment {
 
 
 
-        // Inflate the layout for this fragment
-        listemodel = new ArrayList<>();
-        listemodel.add(new CardModel());
-
-        listemodel.add(new CardModel());
-
-        listemodel.add(new CardModel());
-
-        listemodel.add(new CardModel());
-
-        listemodel.add(new CardModel());
-
-        listemodel.add(new CardModel());
-
-        listemodel.add(new CardModel());
-        adapter = new CardModelAdapter(listemodel,this.getContext());
-        viewPager = (ViewPager) getView().findViewById(R.id.vvp);
-        viewPager.setAdapter(adapter);
-        CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
-        indicator.setViewPager(viewPager);
-
-        indicator.createIndicators(listemodel.size(),0);
-
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position){
-
-                indicator.animatePageSelected(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
 
 
@@ -167,7 +126,6 @@ public class MainFragment extends Fragment {
 
 
 
-        indicator.createIndicators(GlobaleData.globaleListeTache.size(),0);
         viewPagertache.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -252,6 +210,50 @@ public class MainFragment extends Fragment {
                 view.findViewById(R.id.txtactivity).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.vvp).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
+
+
+                // Inflate the layout for this fragment
+                listemodel = new ArrayList<>();
+                listemodel.add(new CardModel());
+
+                listemodel.add(new CardModel());
+
+                listemodel.add(new CardModel());
+
+                listemodel.add(new CardModel());
+
+                listemodel.add(new CardModel());
+
+                listemodel.add(new CardModel());
+
+                listemodel.add(new CardModel());
+                adapter = new CardModelAdapter(listemodel,this.getContext());
+                viewPager = (ViewPager) getView().findViewById(R.id.vvp);
+                viewPager.setAdapter(adapter);
+                CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
+                indicator.setViewPager(viewPager);
+
+                indicator.createIndicators(listemodel.size(),0);
+
+//                indicator.createIndicators(GlobaleData.globaleListeTache.size(),0);
+
+                viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position){
+
+                        indicator.animatePageSelected(position);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
         }
     }
 }

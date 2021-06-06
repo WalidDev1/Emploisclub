@@ -46,6 +46,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import ma.uit.emploisclub.ConnectionActivity;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.RecyclerViewAdapterListeSeance;
 import ma.uit.emploisclub.Data.GlobaleData;
 import ma.uit.emploisclub.Model.Seance;
@@ -70,6 +71,7 @@ public class fragment_profile extends Fragment {
     TextInputLayout editTel ;
     ImageButton btnImage ;
     ImageView imageProfileView ;
+    Button btnDeco ;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -130,6 +132,7 @@ public class fragment_profile extends Fragment {
         editAdresse = (TextInputLayout) getView().findViewById(R.id.AdresseMail);
         editTel = (TextInputLayout) getView().findViewById(R.id.telProfile);
         btnImage = (ImageButton) getView().findViewById(R.id.btnAddImage) ;
+        btnDeco = (Button) getView().findViewById(R.id.btnLogout);
         initInformation();
         btnImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +140,20 @@ public class fragment_profile extends Fragment {
                 onClickAddImage();
             }
         });
+
+        btnDeco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logout(getContext());
+            }
+        });
+    }
+
+    public void Logout(Context context){
+        GlobaleData.user = null ;
+        GlobaleData.SaveVar("RemberMe",false+"",context);
+        Intent connection = new Intent(getActivity(), ConnectionActivity.class);
+        startActivity(connection);
     }
 
     public void initInformation(){

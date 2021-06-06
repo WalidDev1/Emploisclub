@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.github.ybq.android.spinkit.sprite.Sprite;
@@ -35,66 +36,67 @@ import retrofit2.Response;
 
 public class ConnectionActivity extends AppCompatActivity {
 
-    EmploisClubService apiInterface;
+
     Button button;
-    myLoader newFragment = new myLoader();
+    String newlog ,pass ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
         button = (Button) findViewById(R.id.btnConnection);
 
-        String newlog = ((TextInputEditText) findViewById(R.id.txtLogin)).getText().toString();
-        String pass  = ((TextInputEditText) findViewById(R.id.txtPassword)).getText().toString();
+//        newlog = ((TextInputEditText) findViewById(R.id.txtLogin)).getText().toString();
+//        pass  = ((TextInputEditText) findViewById(R.id.txtPassword)).getText().toString();
 
-        SwitchMaterial switchbtn = (SwitchMaterial) findViewById(R.id.setConnected);
-        apiInterface = APIClient.getClient().create(EmploisClubService.class);
+
         new GlobaleData();
-        Log.i("test Share get 1" ,GlobaleData.GetVar("RemberMe",getApplicationContext()) + "" );
-
-//        if(GlobaleData.GetVar("RemberMe",getApplicationContext()) != null && Boolean.parseBoolean(GlobaleData.GetVar("RemberMe",getApplicationContext())) == true){
-//            CheckUser(GlobaleData.GetVar("log",getApplicationContext()) ,GlobaleData.GetVar("pass",getApplicationContext()) );
-//        }
-
-        Log.i("test Share get 2" ,GlobaleData.GetVar("RemberMe",getApplicationContext()) + "" );
+        SwitchMaterial switchbtn = (SwitchMaterial) findViewById(R.id.setConnected);
+        if(GlobaleData.GetVar("RemberMe",getApplicationContext()) != null && Boolean.parseBoolean(GlobaleData.GetVar("RemberMe",getApplicationContext())) == true){
+            CheckUser(GlobaleData.GetVar("log",getApplicationContext()) ,GlobaleData.GetVar("pass",getApplicationContext()) );
+        }
 
         try
         {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(newlog != "" && pass != ""){
 
-                    Log.i("test Share get",newlog +" and " + pass);
-//                            CheckUser(log,pass);
-//                    GlobaleData.SaveVar("log",log,getApplicationContext());
-//                    GlobaleData.SaveVar("pass",pass,getApplicationContext());
+                if(((TextInputEditText) findViewById(R.id.txtLogin)).getText().toString() != "" && ((TextInputEditText) findViewById(R.id.txtPassword)).getText().toString() != ""){
+
+                    GlobaleData.SaveVar("RemberMe",switchbtn.isChecked()+"",getApplicationContext());
+                    CheckUser(((TextInputEditText) findViewById(R.id.txtLogin)).getText().toString(),((TextInputEditText) findViewById(R.id.txtPassword)).getText().toString());
+                    GlobaleData.SaveVar("log",((TextInputEditText) findViewById(R.id.txtLogin)).getText().toString(),getApplicationContext());
+                    GlobaleData.SaveVar("pass",((TextInputEditText) findViewById(R.id.txtPassword)).getText().toString(),getApplicationContext());
                 }
             }
         });
     }
 
     public void CheckUser(String log , String password){
-        newFragment.show(getSupportFragmentManager(), "missiles");
+        GlobaleData.newFragment.show(getSupportFragmentManager(), "missiles");
 
         Intent intent= new Intent(ConnectionActivity.this , MainActivity.class);
-        Call<UserListe> call = apiInterface.CheckUser(log,password);
+        Call<UserListe> call = GlobaleData.apiInterface.CheckUser(log,password);
         call.enqueue(new Callback<UserListe>() {
             @Override
             public void onResponse(Call<UserListe> call, Response<UserListe> response) {
                 UserListe userList = response.body();
-                GlobaleData.user = userList.data.get(0);
-                newFragment.dismiss();
-                ConnectionActivity.this.startActivity(intent);
+                if(response.isSuccessful()){
+                    GlobaleData.user = userList.data.get(0);
+                    GlobaleData.newFragment.dismiss();
+
+                    Toast.makeText(getApplicationContext(),"Vous etes connecter !",Toast.LENGTH_SHORT).show();
+                    ConnectionActivity.this.startActivity(intent);
+                }
+                GlobaleData.newFragment.dismiss();
             }
             @Override
             public void onFailure(Call<UserListe> call, Throwable t) {
-                Log.i("E",t.getCause().toString());
+                Toast.makeText(getApplicationContext(),t.getCause().toString(),Toast.LENGTH_SHORT).show();
                 call.cancel();
-                newFragment.dismiss();
+                GlobaleData.newFragment.dismiss();
             }
         });
 

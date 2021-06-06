@@ -1,6 +1,7 @@
 package ma.uit.emploisclub.Controllers.Activities.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,13 +40,21 @@ import java.util.Collections;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
+import ma.uit.emploisclub.ConnectionActivity;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.Customdialog;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.Agenda.RecyclerViewAdapterListeSeance;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.ButtonSheet.ButtonSheetGrid;
+import ma.uit.emploisclub.Controllers.MainActivity;
 import ma.uit.emploisclub.Data.GlobaleData;
+import ma.uit.emploisclub.Model.ListeTache;
+import ma.uit.emploisclub.Model.ResponseStatusAPI;
 import ma.uit.emploisclub.Model.Seance;
+import ma.uit.emploisclub.Model.UserListe;
 import ma.uit.emploisclub.R;
 import ma.uit.emploisclub.api.EmploisClubCalls;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static ma.uit.emploisclub.Controllers.MainActivity.getScreenWidth;
 
@@ -64,23 +73,9 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
     ArrayList<Seance> dataModelsSelectedDay; // liste Filtrer delon le jour selectionner
     HorizontalCalendar horizontalCalendar ;
 
-//    @Override
-//    public void onResponse(@Nullable EmploisClubCalls.dataReceived Seances) {
-//        if(Seances != null){
-//            GlobaleData.globaleListe = new ArrayList<>();
-//            for (Seance s: Seances.getListeSeance()) {
-//                GlobaleData.globaleListe.add(new Seance(145, s.getName(),1 , false ,  0,  s.getDate_start().toString("yyyy-MM-dd HH:mm:ss"), s.getComment()));
-//            }
-//            setInitialTache(GlobaleData.globaleListe);
-//
-//        }else Log.i("i","no data on reponse ");
-//
-//    }
-//
-//    @Override
-//    public void onFailure() {
-//        Log.i("i","error");
-//    }
+
+
+
 
 
     SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -164,6 +159,7 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setInitialTache(GlobaleData.globaleListe);
         LocalDate currentdate = LocalDate.now();
         CalendarView calendarView = (CalendarView) getView().findViewById(R.id.calendarView);
         Calendar initcalendar = Calendar.getInstance();
@@ -298,32 +294,6 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
         Button btnaddTache = (Button) getView().findViewById(R.id.add_tache);
         switch(idRole){
             case 1:
-
-                view.findViewById(R.id.layoutAddSeance).setVisibility(View.VISIBLE);
-                listView.setMenuCreator(creator);
-
-                listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                        dataModels.remove(dataModelsSelectedDay.get(position));
-                        getTacheAt(horizontalCalendar.getSelectedDate());
-                        return false;
-                    }
-
-                    // erreur lors de la suppression rah ma khedamache lya la position hit endi deux liste meni tan supprimer liste 1 fune position l element na pas la meme position fla deusieme liste ils faut presendre selon les id
-
-                });
-                // ADD tache
-
-                btnaddTache.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view) {
-                        Customdialog cdd =new Customdialog();
-                        cdd.show(getFragmentManager(),"");
-                        cdd.setTargetFragment(AgendaFragment.this, 1);
-                    }
-                });
-                break;
             case 3:
 
                 view.findViewById(R.id.layoutAddSeance).setVisibility(View.VISIBLE);
@@ -332,6 +302,30 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
                 listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+
+
+                        GlobaleData.newFragment.show(getActivity().getSupportFragmentManager(), "missiles");
+
+//        Intent intent= new Intent(ConnectionActivity.this , MainActivity.class);
+                        Call<ResponseStatusAPI> call = GlobaleData.apiInterface.DeleteTache(GlobaleData.user.getId().toString(), dataModelsSelectedDay.get(position).getId()+"");
+                        call.enqueue(new Callback<ResponseStatusAPI>() {
+                            @Override
+                            public void onResponse(Call<ResponseStatusAPI> call, Response<ResponseStatusAPI> response) {
+
+                                if(response.isSuccessful()){
+                                    Toast.makeText(getContext(),response.body().data,Toast.LENGTH_SHORT).show();
+                                    GlobaleData.newFragment.dismiss();
+                                }
+
+                                GlobaleData.newFragment.dismiss();
+                            }
+                            @Override
+                            public void onFailure(Call<ResponseStatusAPI> call, Throwable t) {
+                                call.cancel();
+                                GlobaleData.newFragment.dismiss();
+                            }
+                        });
+
                         dataModels.remove(dataModelsSelectedDay.get(position));
                         getTacheAt(horizontalCalendar.getSelectedDate());
                         return false;
@@ -341,6 +335,7 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
 
                 });
                 // ADD tache
+
                 btnaddTache.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
@@ -350,6 +345,8 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
                     }
                 });
                 break;
+
+            // ADD tache
             default :
                 break;
     }
@@ -377,20 +374,73 @@ public class AgendaFragment extends Fragment implements Customdialog.Customdialo
     }
 
     public void setTache(Customdialog.TacheSend val) {
-        dataModels.add(new Seance(145, val.name,1 , false ,  0,  new DateTime(horizontalCalendar.getSelectedDate().get(Calendar.YEAR),horizontalCalendar.getSelectedDate().get(Calendar.MONTH)+1,horizontalCalendar.getSelectedDate().get(Calendar.DAY_OF_MONTH),val.heur,val.minute).toString("yyyy-MM-dd HH:mm:ss"), val.description));
+        Seance seanceAdd = new Seance(145, val.name,1 , false ,  0,  new DateTime(horizontalCalendar.getSelectedDate().get(Calendar.YEAR),horizontalCalendar.getSelectedDate().get(Calendar.MONTH)+1,horizontalCalendar.getSelectedDate().get(Calendar.DAY_OF_MONTH),val.heur,val.minute).toString("yyyy-MM-dd HH:mm:ss"), val.description);
+        dataModels.add(seanceAdd);
+
+        GlobaleData.newFragment.show(getActivity().getSupportFragmentManager(), "missiles");
+
+//        Intent intent= new Intent(ConnectionActivity.this , MainActivity.class);
+        Call<ResponseStatusAPI> call = GlobaleData.apiInterface.AddTache(GlobaleData.user.getId().toString() , "1" , seanceAdd.getName() );
+        call.enqueue(new Callback<ResponseStatusAPI>() {
+            @Override
+            public void onResponse(Call<ResponseStatusAPI> call, Response<ResponseStatusAPI> response) {
+
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(),response.body().data,Toast.LENGTH_SHORT).show();
+                    GlobaleData.newFragment.dismiss();
+                }
+
+                GlobaleData.newFragment.dismiss();
+            }
+            @Override
+            public void onFailure(Call<ResponseStatusAPI> call, Throwable t) {
+                call.cancel();
+                GlobaleData.newFragment.dismiss();
+            }
+        });
+
         getTacheAt(horizontalCalendar.getSelectedDate());
     }
 
     public void setInitialTache(ArrayList<Seance> Seances){
-        if(!Seances.isEmpty()){
 
-            for (Seance s: Seances) {
-                dataModels.add(new Seance(145, s.getName(),1 , false ,  0,  s.getDate_start().toString("yyyy-MM-dd HH:mm:ss"), s.getComment()));
+
+        GlobaleData.newFragment.show(getActivity().getSupportFragmentManager(), "missiles");
+
+//        Intent intent= new Intent(ConnectionActivity.this , MainActivity.class);
+        Call<ListeTache> call = GlobaleData.apiInterface.getAllTache();
+        call.enqueue(new Callback<ListeTache>() {
+            @Override
+            public void onResponse(Call<ListeTache> call, Response<ListeTache> response) {
+
+                if(response.isSuccessful()){
+
+                    if(!response.body().listeSeanceReceived.isEmpty()){
+
+                        dataModels.addAll(response.body().listeSeanceReceived)  ;
+
+                    }else{
+
+                        Toast.makeText(getContext(),"No data found",Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                    GlobaleData.newFragment.dismiss();
+                }
+
+                GlobaleData.newFragment.dismiss();
             }
-        }else{
-            Toast.makeText(this.getContext(),"No data found",Toast.LENGTH_SHORT).show();
+            @Override
+            public void onFailure(Call<ListeTache> call, Throwable t) {
+                call.cancel();
+                GlobaleData.newFragment.dismiss();
+            }
+        });
 
-        }
+
+
+
     }
 
 }
