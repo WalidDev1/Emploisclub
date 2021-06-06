@@ -85,7 +85,7 @@ public class Customdialog extends DialogFragment implements View.OnClickListener
 
                 if (count != 0 ){
                     if(  Integer.parseInt(s.toString()) < 0 || Integer.parseInt(s.toString()) > 23 ){
-                        Toast.makeText(Customdialog.super.getContext(),"Lay hdik safi \uD83D\uDE11",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Customdialog.super.getContext(),"Heur incorrect  \uD83D\uDE11",Toast.LENGTH_SHORT).show();
                         heur.getText().clear();
                     }
                     if(s.length() == 2){
@@ -105,7 +105,7 @@ public class Customdialog extends DialogFragment implements View.OnClickListener
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (i2 != 0 ){
                     if(  Integer.parseInt(charSequence.toString()) < 0 || Integer.parseInt(charSequence.toString()) > 59 ){
-                        Toast.makeText(Customdialog.super.getContext(),"Lay hdik safi \uD83D\uDE11",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Customdialog.super.getContext(),"Minute incorrect \uD83D\uDE11",Toast.LENGTH_SHORT).show();
                         second.getText().clear();
                     }
                     if(charSequence.length() == 2){

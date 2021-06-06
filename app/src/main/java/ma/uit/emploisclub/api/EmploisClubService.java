@@ -21,7 +21,6 @@ import retrofit2.http.Path;
 
 public interface EmploisClubService {
 
-
     @GET("GetTache.php")
     Call<ListeTache> getAllTache();
 
@@ -33,10 +32,11 @@ public interface EmploisClubService {
     @POST("RemoveTache.php")
     Call<ResponseStatusAPI> DeleteTache(@Field("id") String id, @Field("idTache") String  tachetype );
 
+    @GET("GetAllUser.php")
+    Call<UserListe> getAllUser();
 
     @FormUrlEncoded
     @POST("CheckUser.php")
     Call<UserListe> CheckUser(@Field("username") String log, @Field("password") String  password );
-
 
 }

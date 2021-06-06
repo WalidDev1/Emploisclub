@@ -28,6 +28,7 @@ import ma.uit.emploisclub.Data.GlobaleData;
 import ma.uit.emploisclub.Model.Coach;
 import ma.uit.emploisclub.Model.Seance;
 import ma.uit.emploisclub.Model.Tache;
+import ma.uit.emploisclub.Model.User;
 import ma.uit.emploisclub.R;
 
 public class ButtonSheetGrid extends BottomSheetDialogFragment {
@@ -35,7 +36,7 @@ public class ButtonSheetGrid extends BottomSheetDialogFragment {
     GridView listGridView ;
     GridViewAdapterPersonelle gridViewAdapter ;
     CoordinatorLayout coorlayout;
-    List<Coach> listeCoachFilter ;
+    List<User> listeCoachFilter ;
     public ButtonSheetGrid(CoordinatorLayout coorlayout) {
         // Required empty public constructor
         this.coorlayout = coorlayout ;
@@ -44,7 +45,8 @@ public class ButtonSheetGrid extends BottomSheetDialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listeCoachFilter = new GlobaleData().globaleListeCoach ;
+        listeCoachFilter = GlobaleData.globaleListeUser ;
+
 
     }
 

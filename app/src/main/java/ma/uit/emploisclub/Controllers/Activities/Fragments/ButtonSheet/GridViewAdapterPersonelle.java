@@ -15,16 +15,17 @@ import java.util.List;
 
 import ma.uit.emploisclub.Model.Coach;
 import ma.uit.emploisclub.Model.Tache;
+import ma.uit.emploisclub.Model.User;
 import ma.uit.emploisclub.R;
 
 
 class GridViewAdapterPersonelle extends BaseAdapter implements Filterable {
 
-    private List<Coach> listeCoach ;
-    private List<Coach> listeCoachFiltred ;
+    private List<User> listeCoach ;
+    private List<User> listeCoachFiltred ;
     private Context context ;
 
-    public GridViewAdapterPersonelle(List<Coach> listeCoach, Context context) {
+    public GridViewAdapterPersonelle(List<User> listeCoach, Context context) {
         this.listeCoach = listeCoach;
         this.listeCoachFiltred = listeCoach;
         this.context = context;
@@ -51,7 +52,10 @@ class GridViewAdapterPersonelle extends BaseAdapter implements Filterable {
         View myView = view ;
 
         if(myView == null) myView = LayoutInflater.from(context).inflate(R.layout.item_grid_view,viewGroup,false);
+
         ((TextView)myView.findViewById(R.id.txtName)).setText(listeCoach.get(i).getNom() + " " + listeCoach.get(i).getPrenom());
+
+        Log.i("test log ", listeCoach.get(0).getNom()+"");
 
         return myView;
     }
@@ -67,9 +71,9 @@ class GridViewAdapterPersonelle extends BaseAdapter implements Filterable {
                     filterRes.values = listeCoachFiltred;
                 }else{
                     String serachChr = charSequence.toString().toLowerCase();
-                    List<Coach> searchRes = new ArrayList<>();
+                    List<User> searchRes = new ArrayList<>();
 
-                    for (Coach c: listeCoachFiltred) {
+                    for (User c: listeCoachFiltred) {
                         if(c.getNom().toLowerCase().contains(serachChr) || c.getPrenom().toLowerCase().contains(serachChr)){
                             searchRes.add(c);
                         }
@@ -83,7 +87,7 @@ class GridViewAdapterPersonelle extends BaseAdapter implements Filterable {
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                    listeCoach = (List<Coach>) filterResults.values;
+                    listeCoach = (List<User>) filterResults.values;
                     notifyDataSetChanged();
             }
         };

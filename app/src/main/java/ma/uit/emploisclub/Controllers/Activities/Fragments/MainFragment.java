@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import ma.uit.emploisclub.ConnectionActivity;
 import ma.uit.emploisclub.Controllers.Activities.Fragments.ButtonSheet.ButtonSheetGrid;
 import ma.uit.emploisclub.Controllers.CardItem.CardModel;
 import ma.uit.emploisclub.Controllers.CardItem.CardModelAdapter;
@@ -41,8 +43,12 @@ import ma.uit.emploisclub.Controllers.CardItem.ListeTacheAdapter;
 import ma.uit.emploisclub.Data.GlobaleData;
 import ma.uit.emploisclub.Model.Coach;
 import ma.uit.emploisclub.Model.Tache;
+import ma.uit.emploisclub.Model.UserListe;
 import ma.uit.emploisclub.R;
 import me.relex.circleindicator.CircleIndicator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -114,10 +120,6 @@ public class MainFragment extends Fragment {
         List<EventDay> events = new ArrayList<>();
 
 
-
-
-
-
         adapterTache = new ListeTacheAdapter(GlobaleData.globaleListeTache,this.getContext());
         viewPagertache = (ViewPager) getView().findViewById(R.id.listeTache);
         viewPagertache.setAdapter(adapterTache);
@@ -150,7 +152,7 @@ public class MainFragment extends Fragment {
 
         Calendar calendarEvent = Calendar.getInstance();
         calendarEvent.set(2021,05,17);
-        events.add(new EventDay(calendarEvent, R.drawable.ic_close));
+        events.add(new EventDay(calendarEvent, R.drawable.bg_abonnement));
 //        events.add(new EventDay(calendarEvent, new Drawable()));
 //        events.add(new EventDay(calendarEvent, R.drawable.ic_close, Color.parseColor("#228B22")));
         calendarView.setEvents(events);
@@ -190,6 +192,27 @@ public class MainFragment extends Fragment {
 
                         ButtonSheetGrid bottomSheetFragment = new ButtonSheetGrid(((CoordinatorLayout) view.findViewById(R.id.button_sheet)));
                         bottomSheetFragment.show(getFragmentManager(), bottomSheetFragment.getTag());
+                    }
+                });
+
+                Call<UserListe> call = GlobaleData.apiInterface.getAllUser();
+                call.enqueue(new Callback<UserListe>() {
+                    @Override
+                    public void onResponse(Call<UserListe> call, Response<UserListe> response) {
+                        UserListe userList = response.body();
+                        if(response.isSuccessful()){
+
+                            GlobaleData.globaleListeUser.addAll(userList.data);
+                            Log.i("test main" ,GlobaleData.globaleListeUser.toString()+"" );
+                            GlobaleData.newFragment.dismiss();
+                        }
+                        GlobaleData.newFragment.dismiss();
+                    }
+                    @Override
+                    public void onFailure(Call<UserListe> call, Throwable t) {
+                        Toast.makeText(getContext(),t.getCause().toString(),Toast.LENGTH_SHORT).show();
+                        call.cancel();
+                        GlobaleData.newFragment.dismiss();
                     }
                 });
                 break;

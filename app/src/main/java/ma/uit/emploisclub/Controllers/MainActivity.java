@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         openFragment(MainFragment.newInstance("", ""));
         listeAllSeances = new ArrayList<>();
+
         GlobaleData.globaleListeTache.add(new Tache(0,"Tache 1"));
         GlobaleData.globaleListeTache.add(new Tache(1,"Tache 2"));
         GlobaleData.globaleListeTache.add(new Tache(2,"Tache 3"));
